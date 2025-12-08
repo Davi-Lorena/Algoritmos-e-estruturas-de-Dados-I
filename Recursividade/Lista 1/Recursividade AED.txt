@@ -1,0 +1,31 @@
+Recursividade AED
+1)
+a = 48 + 20 + 64 = 68 + 64 = 132 
+a = 132 e b = 37
+
+1 -> 132, 37 
+2 -> (132 - 37), 37 = 95, 37
+3 -> (95 - 37), 37 = 58, 37 
+4 -> (58 - 37), 37 = 21, 37 (a é menor que b) 
+
+4 -> Return 0
+3 -> 1 + 0 = 1
+2 -> 1 + 1 = 2
+1 -> 1 + 2 = 3
+
+NOTAS DO EXERCÍCIO: Ele calcula a divisão inteira de a por b e os valores finais de a e retorno são, respectivamente, os valores do resto e do quociente. 
+
+
+2) lista = 20 e n = 4
+
+0 -> agregar(20, 4)
+1 -> 2 * agregar(20, 3) + 19 
+2 -> 2 * agregar(20, 2) + 18
+3 -> 2 * agregar(20, 1) + 17
+4 -> n == 0 
+
+4-> return 0
+3-> 2 * 0 + 17 = return 17 
+2 -> 2 * 17 + 18 = return 52 
+1 -> 2 * 52 + 19 = 104 + 19 = return 123
+0 -> 2 * 123 + 20 = 266
