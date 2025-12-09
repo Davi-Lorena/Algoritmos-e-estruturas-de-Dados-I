@@ -132,7 +132,7 @@ tno *retornaRaiz(tabp *arv)
 
 // Métodos de busca - Valor e Nó
 
-int buscaValor(tabp *arv, int dado)
+int buscaValor(tabp *arv, int dado) // Completamente sem nexo, mas ok
 {
 
     tno *aux = arv->raiz;
@@ -206,6 +206,8 @@ tno *antecessor(tabp *arv)
 
     return ant;
 }
+
+// Remoção de um nó da estrutura
 
 int removeNo(tabp *arv, int chave)
 {
@@ -368,3 +370,115 @@ int aux = altura - 2;
 
 }
 
+/* 
+int removeNo(tabp *arv, int valor) {
+    tno *pai = NULL, *aux = arv->raiz;
+
+// Buscando o elemento
+if(!aux) return -1;
+
+while(aux && aux->chave != valor) {
+pai = aux;
+if(aux->chave < valor) aux = aux->dir;
+else aux = aux->esq;
+}
+
+if(!aux) return -1;
+
+// Se tiver dois filhos 
+
+if(aux->esq && aux->dir) {
+
+tno *pred = aux->esq;
+
+while(pred->dir) {
+    pai = pred; 
+    pred = pred->dir;
+}
+
+aux->chave = pred->chave;
+aux = pred;
+
+}
+
+// Se tiver 1 filho
+
+if(aux->esq || aux->dir) {
+if(aux->esq) {
+    if(aux == pai->esq) pai->esq = aux->esq;
+    else pai->dir = aux->esq;
+} else {
+if(aux == pai->esq) pai->esq = aux->dir;
+else pai->dir = aux->dir;
+}
+}
+
+// Nó folha;
+
+if(!aux->esq && !aux->dir) {
+    if(aux = pai->esq) pai->esq = NULL;
+    else pai->dir = NULL;
+}
+
+free(aux);
+return 1;
+
+}
+
+int removeNo(tabp *arv, int chave) {
+tno *aux = arv->raiz;
+
+if(!aux) return -1;
+
+tno *pai = NULL;
+
+while(aux && aux->chave != chave) {
+    pai = aux;
+
+    if(chave < aux->chave) aux = aux->esq;
+    else aux = aux->dir;
+}
+
+if(!aux) return -1;
+
+if(aux->esq && aux->dir) {
+tno *pred = aux->esq;
+
+while(pred->dir) {
+    pai = pred;
+pred = pred->dir;
+}
+
+aux->chave = pred->chave;
+aux = pred;
+
+}
+
+if(aux->esq || aux->dir) {
+
+if(aux->esq) {
+
+if(aux == pai->esq) pai->esq = aux->esq;
+else pai->dir = aux->esq;
+
+} else {
+    if(aux == pai->esq) pai->esq = aux->dir;
+    else pai->dir = aux->dir;
+}
+
+}
+
+
+if(!aux->dir && !aux->esq) {
+
+if(aux == pai->esq) pai->esq = NULL;
+else pai->dir = NULL;
+
+}
+
+free(aux);
+return 1;
+
+
+}
+*/ 

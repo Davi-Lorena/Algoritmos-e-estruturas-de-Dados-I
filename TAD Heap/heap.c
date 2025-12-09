@@ -299,4 +299,127 @@ pai = pai/2;
 
 return 1;
 }
+
+int insereElemento(heap *h, int elemento) {
+int pai, pos;
+
+if(h->tail >= h->tam) return -1;
+
+if(!h->tail) {
+    h->tail++;
+    h->vet[h->tail] = elemento;
+    return 1;
+}
+
+h->tail++;
+h->vet[h->tail] = elemento;
+
+pos = h->tail;
+pai = h->tail/2;
+
+while(pai && h->vet[pai] < h->vet[pos]) {
+    int aux = h->vet[pai];
+    h->vet[pai] = h->vet[pos];
+    h->vet[pos] = aux;
+pos = pai;
+pai = pai / 2;
+
+}
+
+return 1;
+
+}
+
+int removeElemento(heap *h) {
+int aux;
+
+if(!h->tail) return -1;
+
+aux = h->vet[1];
+h->vet[1] = h->tail;
+h->tail--;
+
+maxheapify(h, 1);
+
+return 1;
+}
+
+ maxheapify(heap *h, int pos) {
+int l, r, maior, aux;
+
+l = 2 * pos;
+r = 2 * pos + 1;
+
+if(l <= h->tail && h->vet[pos] < h->vet[l]) maior = l;
+else maior = pos;
+
+if(r <= h->tail && h->vet[maior] < h->vet[r]) maior = r;
+
+if(maior != pos) {
+aux = h->vet[pos];
+h->vet[pos] = h->vet[maior];
+h->vet[maior] = aux;
+maxheapify(h, maior);
+
+}
+
+ }
+
+int alteraprio_pos(heap *h, int pos, int new) {
+
+if(pos < 1 || pos > h->tail) return -1;
+
+int aux = h->vet[pos];
+h->vet[pos] = new;
+
+if(aux > new) 
+    maxheapify(h, pos);
+else {
+
+int pai = pos/2;
+
+while(pai && h->vet[pai] < h->vet[pos]) {
+    aux = h->vet[pos];
+    h->vet[pos] = h->vet[pai];
+    h->vet[pai] = aux;
+
+pos = pai;
+pai = pai/2;
+
+}
+
+}
+
+}
+
+int alteraprio_valor(heap *h, int elemento, int new) {
+int pos, aux;
+
+while(pos <= h->tail && h->vet[pos] != elemento) 
+    pos++;
+
+if(h->vet[pos] != elemento) return -1;
+
+aux = h->vet[pos];
+h->vet[pos] = new;
+
+if(aux > new) 
+    maxheapify(h, pos);
+else {
+int pai = pos / 2;
+
+while(pai && h->vet[pai] < h->vet[pos]) {
+    aux = h->vet[pai];
+    h->vet[pai] = h->vet[pos];
+    h->vet[pos] = aux;
+
+    pos = pai;
+    pai = pai/2;
+}
+
+}
+return 1;
+
+}
+
 */
